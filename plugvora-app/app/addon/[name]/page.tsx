@@ -168,7 +168,6 @@ export default async function AddonPage({ params }: PageProps) {
               </p>
 
             </div>
-
           </div>
 
           {/* Stats */}
@@ -230,14 +229,15 @@ export default async function AddonPage({ params }: PageProps) {
 
           <a
             href={addon.download}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 block w-full rounded-2xl bg-red-500 px-6 py-4 text-center font-black text-white transition hover:bg-red-600"
           >
             تحميل {addonName}
           </a>
 
           <p className="mt-3 text-center text-xs text-gray-600">
-            سيتم تحميل ملف .jar مباشرة.
+            سيتم فتح ملف الإضافة مباشرة.
           </p>
 
         </div>
