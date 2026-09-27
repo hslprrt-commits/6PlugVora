@@ -6,23 +6,24 @@ type PageProps = {
   }>;
 };
 
-const addons: Record<
-  string,
-  {
-    description: string;
-    version: string;
-    category: string;
-    author: string;
-    downloads: string;
-  }
-> = {
+type Addon = {
+  description: string;
+  version: string;
+  category: string;
+  author: string;
+  downloads: string;
+  download: string;
+};
+
+const addons: Record<string, Addon> = {
   EssentialsX: {
     description:
       "مجموعة أدوات أساسية لإدارة سيرفر Minecraft وإضافة أوامر ومميزات مهمة.",
-    version: "1.21",
+    version: "2.22.0",
     category: "Management",
     author: "EssentialsX Team",
     downloads: "10M+",
+    download: "/addons/EssentialsX.jar",
   },
 
   LuckPerms: {
@@ -32,6 +33,7 @@ const addons: Record<
     category: "Permissions",
     author: "LuckPerms",
     downloads: "20M+",
+    download: "/addons/LuckPerms.jar",
   },
 
   Geyser: {
@@ -41,6 +43,7 @@ const addons: Record<
     category: "Crossplay",
     author: "GeyserMC",
     downloads: "15M+",
+    download: "/addons/Geyser.jar",
   },
 
   WorldEdit: {
@@ -50,6 +53,7 @@ const addons: Record<
     category: "Building",
     author: "EngineHub",
     downloads: "50M+",
+    download: "/addons/WorldEdit.jar",
   },
 
   BetterRTP: {
@@ -59,6 +63,7 @@ const addons: Record<
     category: "Teleport",
     author: "BetterRTP",
     downloads: "5M+",
+    download: "/addons/BetterRTP.jar",
   },
 };
 
@@ -130,15 +135,20 @@ export default async function AddonPage({ params }: PageProps) {
 
       {/* Main */}
       <section className="mx-auto max-w-5xl px-5 py-12">
+
         {/* Addon Header */}
         <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-red-500/10 via-[#10131a] to-[#10131a] p-7 sm:p-10">
+
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-3xl bg-red-500/10 text-4xl font-black text-red-400">
               P
             </div>
 
             <div>
+
               <div className="mb-3 flex flex-wrap gap-2">
+
                 <span className="rounded-full bg-red-500/10 px-3 py-1 text-xs font-bold text-red-400">
                   {addon.category}
                 </span>
@@ -146,6 +156,7 @@ export default async function AddonPage({ params }: PageProps) {
                 <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-gray-400">
                   Minecraft {addon.version}
                 </span>
+
               </div>
 
               <h1 className="text-4xl font-black">
@@ -155,15 +166,19 @@ export default async function AddonPage({ params }: PageProps) {
               <p className="mt-3 text-gray-400">
                 {addon.description}
               </p>
+
             </div>
+
           </div>
 
           {/* Stats */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+
             <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
               <p className="text-xs text-gray-600">
                 الإصدار
               </p>
+
               <p className="mt-1 font-bold">
                 {addon.version}
               </p>
@@ -173,6 +188,7 @@ export default async function AddonPage({ params }: PageProps) {
               <p className="text-xs text-gray-600">
                 التصنيف
               </p>
+
               <p className="mt-1 font-bold">
                 {addon.category}
               </p>
@@ -182,6 +198,7 @@ export default async function AddonPage({ params }: PageProps) {
               <p className="text-xs text-gray-600">
                 المطور
               </p>
+
               <p className="mt-1 truncate font-bold">
                 {addon.author}
               </p>
@@ -191,37 +208,43 @@ export default async function AddonPage({ params }: PageProps) {
               <p className="text-xs text-gray-600">
                 التحميلات
               </p>
+
               <p className="mt-1 font-bold">
                 {addon.downloads}
               </p>
             </div>
+
           </div>
         </div>
 
         {/* Download */}
         <div className="mt-6 rounded-3xl border border-white/10 bg-[#10131a] p-7">
+
           <h2 className="text-2xl font-black">
             تحميل الإضافة
           </h2>
 
           <p className="mt-2 text-sm text-gray-500">
-            حمّل أحدث إصدار متوافق مع Minecraft {addon.version}.
+            حمّل ملف الإضافة من PlugVora.
           </p>
 
-          <button
-            type="button"
-            className="mt-6 w-full rounded-2xl bg-red-500 px-6 py-4 font-black text-white transition hover:bg-red-600"
+          <a
+            href={addon.download}
+            download
+            className="mt-6 block w-full rounded-2xl bg-red-500 px-6 py-4 text-center font-black text-white transition hover:bg-red-600"
           >
             تحميل {addonName}
-          </button>
+          </a>
 
           <p className="mt-3 text-center text-xs text-gray-600">
-            رابط التحميل سيتم ربطه لاحقًا بملف الإضافة الحقيقي.
+            سيتم تحميل ملف .jar مباشرة.
           </p>
+
         </div>
 
         {/* Description */}
         <div className="mt-6 rounded-3xl border border-white/10 bg-[#10131a] p-7">
+
           <h2 className="text-2xl font-black">
             عن الإضافة
           </h2>
@@ -231,10 +254,12 @@ export default async function AddonPage({ params }: PageProps) {
           </p>
 
           <p className="mt-4 leading-8 text-gray-400">
-            يمكنك استخدام هذه الصفحة لعرض معلومات الإضافة،
-            الإصدار، المطور، التحميلات، وروابط التحميل.
+            هذه الصفحة تعرض معلومات الإضافة وإصدارها
+            والمطور وعدد التحميلات ورابط تحميل الملف.
           </p>
+
         </div>
+
       </section>
 
       {/* Footer */}
