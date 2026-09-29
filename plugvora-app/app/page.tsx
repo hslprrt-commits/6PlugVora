@@ -1,147 +1,170 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
 const addons = [
   {
     name: "EssentialsX",
     description: "أدوات أساسية لإدارة سيرفر Minecraft بسهولة.",
-    version: "2.21.2",
-    type: "Plugin",
+    version: "1.21",
+    category: "Management",
+  },
+  {
+    name: "LuckPerms",
+    description: "إدارة الرتب والصلاحيات بشكل احترافي.",
+    version: "1.21",
+    category: "Permissions",
+  },
+  {
+    name: "Geyser",
+    description: "السماح للاعبي Bedrock بالدخول إلى سيرفر Java.",
+    version: "1.21",
+    category: "Crossplay",
+  },
+  {
+    name: "WorldEdit",
+    description: "أداة قوية لبناء وتعديل العوالم بسرعة.",
+    version: "1.21",
+    category: "Building",
   },
   {
     name: "BetterRTP",
-    description: "تنقل عشوائي سريع وآمن للاعبين.",
-    version: "3.6.13",
-    type: "Plugin",
-  },
-  {
-    name: "CombatLogX",
-    description: "نظام متقدم لمنع الهروب أثناء القتال.",
-    version: "11+",
-    type: "Plugin",
+    description: "نظام انتقال عشوائي للاعبين داخل العالم.",
+    version: "1.21",
+    category: "Teleport",
   },
 ];
 
-export default function Home() {
+export default function AddonsPage() {
+  const [search, setSearch] = useState("");
+
+  const filteredAddons = addons.filter((addon) =>
+    addon.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <main dir="rtl" className="min-h-screen bg-[#070a0d] text-white">
-
+    <main
+      dir="rtl"
+      className="min-h-screen bg-[#08090d] text-white"
+    >
       {/* Header */}
-      <header className="border-b border-white/10 bg-black/20">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-
-          <div>
-            <h1 className="text-2xl font-black text-emerald-400">
-              PlugVora
-            </h1>
-
-            <p className="text-xs text-gray-500">
-              Minecraft Addons
-            </p>
-          </div>
-
-          <a
-            href="#addons"
-            className="rounded-xl bg-white/5 px-4 py-2 text-sm font-bold transition hover:bg-white/10"
+      <header className="border-b border-white/10 bg-[#0b0d12]/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
+          <Link
+            href="/"
+            className="text-2xl font-black tracking-tight"
           >
-            الإضافات
-          </a>
+            <span className="text-red-500">Plug</span>
+            <span>Vora</span>
+          </Link>
 
+          <nav className="hidden gap-6 text-sm text-gray-400 sm:flex">
+            <Link href="/" className="transition hover:text-white">
+              الرئيسية
+            </Link>
+
+            <Link
+              href="/addons"
+              className="text-white"
+            >
+              الإضافات
+            </Link>
+          </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-5 py-20 text-center">
+      <section className="mx-auto max-w-7xl px-5 pb-10 pt-14">
+        <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-red-500/10 via-[#10131b] to-[#10131b] p-8 sm:p-12">
+          <p className="mb-3 text-sm font-bold text-red-400">
+            PLUGVORA ADDONS
+          </p>
 
-        <p className="mb-4 text-sm font-bold text-emerald-400">
-          منصة إضافات Minecraft
-        </p>
+          <h1 className="text-4xl font-black sm:text-5xl">
+            إضافات Minecraft
+          </h1>
 
-        <h2 className="text-5xl font-black leading-tight sm:text-6xl">
-          كل إضافاتك
-          <br />
+          <p className="mt-4 max-w-2xl text-gray-400">
+            اكتشف إضافات Minecraft ورتّب سيرفرك بالطريقة التي تريدها.
+          </p>
 
-          <span className="text-emerald-400">
-            في مكان واحد
-          </span>
-        </h2>
-
-        <p className="mx-auto mt-6 max-w-2xl leading-8 text-gray-400">
-          اكتشف إضافات Minecraft، تصفح تفاصيلها،
-          واعثر على الأدوات المناسبة لسيرفرك.
-        </p>
-
-        {/* Search */}
-        <div className="mx-auto mt-10 max-w-2xl">
-
-          <input
-            type="text"
-            placeholder="ابحث عن إضافة..."
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-white outline-none placeholder:text-gray-600 focus:border-emerald-500"
-          />
-
+          {/* Search */}
+          <div className="mt-8">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="ابحث عن إضافة..."
+              className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-gray-600 transition focus:border-red-500/50"
+            />
+          </div>
         </div>
-
       </section>
 
       {/* Addons */}
-      <section
-        id="addons"
-        className="mx-auto max-w-6xl px-5 pb-20"
-      >
+      <section className="mx-auto max-w-7xl px-5 pb-20">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-black">
+            جميع الإضافات
+          </h2>
 
-        <div className="mb-8">
-          <h3 className="text-3xl font-black">
-            أحدث الإضافات
-          </h3>
-
-          <p className="mt-2 text-gray-500">
-            إضافات مختارة لـ Minecraft
-          </p>
+          <span className="text-sm text-gray-500">
+            {filteredAddons.length} إضافة
+          </span>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {filteredAddons.length === 0 ? (
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-10 text-center">
+            <p className="text-gray-400">
+              ماكو إضافة بهذا الاسم.
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredAddons.map((addon) => (
+              <Link
+                key={addon.name}
+                href={`/addon/${encodeURIComponent(addon.name)}`}
+                className="group rounded-2xl border border-white/10 bg-[#10131a] p-6 transition duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:bg-[#141720]"
+              >
+                <div className="mb-5 flex items-start justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-xl font-black text-red-400">
+                    P
+                  </div>
 
-          {addons.map((addon) => (
-            <a
-              key={addon.name}
-              href={`/addon/${encodeURIComponent(addon.name)}`}
-              className="group rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-white/[0.06]"
-            >
+                  <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-gray-400">
+                    {addon.version}
+                  </span>
+                </div>
 
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 text-3xl">
-                ⛏️
-              </div>
+                <h3 className="text-xl font-bold transition group-hover:text-red-400">
+                  {addon.name}
+                </h3>
 
-              <h4 className="mt-6 text-xl font-black transition group-hover:text-emerald-400">
-                {addon.name}
-              </h4>
+                <p className="mt-3 min-h-[48px] text-sm leading-6 text-gray-500">
+                  {addon.description}
+                </p>
 
-              <p className="mt-3 min-h-14 text-sm leading-7 text-gray-500">
-                {addon.description}
-              </p>
+                <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-4">
+                  <span className="text-xs text-gray-500">
+                    {addon.category}
+                  </span>
 
-              <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4 text-xs">
-
-                <span className="text-gray-500">
-                  الإصدار {addon.version}
-                </span>
-
-                <span className="rounded-lg bg-emerald-500/10 px-3 py-1 font-bold text-emerald-400">
-                  {addon.type}
-                </span>
-
-              </div>
-
-            </a>
-          ))}
-
-        </div>
-
+                  <span className="text-sm font-bold text-red-400">
+                    عرض التفاصيل ←
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-gray-600">
-        © 2026 PlugVora — Minecraft Addons Platform
+      <footer className="border-t border-white/10 py-8 text-center text-sm text-gray-600">
+        © 2026 PlugVora — Minecraft Addons
       </footer>
-
     </main>
   );
 }
