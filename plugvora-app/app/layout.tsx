@@ -16,7 +16,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#08090d] text-white">
 
         {/* Header */}
-        <header className="sticky top-0 z-50 border-b border-white/10 bg-[#08090d]/90 backdrop-blur-xl">
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-[#08090d]/95 backdrop-blur-xl">
           <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
 
             {/* Logo */}
@@ -61,17 +61,15 @@ export default function RootLayout({
 
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Button */}
             <button
               type="button"
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xl text-white transition hover:bg-white/10 md:hidden"
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xl text-white md:hidden"
               aria-label="فتح القائمة"
               onClick={() => {
-                const menu = document.getElementById("mobile-menu");
-
-                if (menu) {
-                  menu.classList.toggle("hidden");
-                }
+                document
+                  .getElementById("mobile-menu")
+                  ?.classList.toggle("hidden");
               }}
             >
               ☰
@@ -88,28 +86,28 @@ export default function RootLayout({
 
               <a
                 href="/"
-                className="rounded-xl px-4 py-3 text-right text-gray-300 transition hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-4 py-3 text-right text-gray-300 hover:bg-white/5 hover:text-white"
               >
                 🏠 الرئيسية
               </a>
 
               <a
                 href="/addons"
-                className="rounded-xl px-4 py-3 text-right text-gray-300 transition hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-4 py-3 text-right text-gray-300 hover:bg-white/5 hover:text-white"
               >
                 🧩 الإضافات
               </a>
 
               <a
                 href="/account"
-                className="rounded-xl px-4 py-3 text-right text-gray-300 transition hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-4 py-3 text-right text-gray-300 hover:bg-white/5 hover:text-white"
               >
                 👤 الحساب
               </a>
 
               <a
                 href="/help"
-                className="rounded-xl px-4 py-3 text-right text-gray-300 transition hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-4 py-3 text-right text-gray-300 hover:bg-white/5 hover:text-white"
               >
                 🆘 مركز المساعدة
               </a>
@@ -118,7 +116,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* Page Content */}
+        {/* Website Content */}
         {children}
 
       </body>
